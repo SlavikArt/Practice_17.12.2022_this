@@ -2,7 +2,23 @@
 #include <iostream>
 using namespace std;
 
-Hdd::Hdd(const char* n, int m, double pr):memory(m), price(pr)
+Hdd::Hdd(int m) :memory(m) 
+{
+
+}
+
+Hdd::Hdd(int m, double pr):Hdd(m)
+{
+	price = pr;
+}
+
+Hdd::Hdd():memory(0)
+{
+	name = nullptr;
+	price = 0;
+}
+
+Hdd::Hdd(const char* n, int m, double pr):Hdd(m, pr)
 {
 	if (name != nullptr)
 	{
@@ -50,17 +66,17 @@ void Hdd::Print()
 		<< "\nPrice: " << price << "\n";
 }
 
-const char* Hdd::getName()
+const char* Hdd::getName()const
 {
 	return name;
 }
 
-const int Hdd::getMemory()
+const int Hdd::getMemory()const
 {
 	return memory;
 }
 
-double Hdd::getPrice()
+double Hdd::getPrice()const
 {
 	return price;
 }

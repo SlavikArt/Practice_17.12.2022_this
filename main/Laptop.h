@@ -8,24 +8,25 @@
 class Laptop
 {
 	char* name;
-	Hdd hdd;
+	Hdd hdd; // автоматически вызывается конструктор
 	GPU gpu;
 	CP cp;
 	RAM ram;
 	double price;
 public:
+	Laptop();
 	Laptop(const char* n, Hdd& h, GPU& g, CP& c, RAM& r, double pr);
 	Laptop(const Laptop& l);
 	~Laptop();
 	void Input();
 	void Print();
 
-	const char* getName();
-	Hdd getHDD();
-	GPU getGPU();
-	CP getCP();
-	RAM getRAM();
-	double getPrice();
+	const char* getName()const;
+	Hdd getHDD()const;
+	GPU getGPU()const;
+	CP getCP()const;
+	RAM getRAM()const;
+	double getPrice()const;
 
 	void setName(const char* n);
 	void setHDD(Hdd& h);

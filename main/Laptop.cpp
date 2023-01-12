@@ -2,6 +2,12 @@
 #include <iostream>
 using namespace std;
 
+Laptop::Laptop()
+{
+	name = nullptr;
+	price = 0;
+}
+
 Laptop::Laptop(const char* n, Hdd& h, GPU& g, CP& c, RAM& r, double pr)
 	:hdd(h), gpu(g), cp(c), ram(r), price(pr)
 {
@@ -62,32 +68,32 @@ void Laptop::Print()
 	ram.Print();
 }
 
-const char* Laptop::getName()
+const char* Laptop::getName()const
 {
 	return name;
 }
 
-Hdd Laptop::getHDD()
+Hdd Laptop::getHDD()const
 {
 	return hdd;
 }
 
-GPU Laptop::getGPU()
+GPU Laptop::getGPU()const
 {
 	return gpu;
 }
 
-CP Laptop::getCP()
+CP Laptop::getCP()const
 {
 	return cp;
 }
 
-RAM Laptop::getRAM()
+RAM Laptop::getRAM()const
 {
 	return ram;
 }
 
-double Laptop::getPrice()
+double Laptop::getPrice()const
 {
 	return price;
 }

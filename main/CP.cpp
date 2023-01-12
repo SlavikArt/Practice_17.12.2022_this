@@ -2,7 +2,24 @@
 #include <iostream>
 using namespace std;
 
-CP::CP(const char* n, double g, double pr):Ghz(g), price(pr)
+CP::CP(int pr)
+{
+	price = pr;
+}
+
+CP::CP(int g, double pr) :CP(pr)
+{
+	Ghz = g;
+}
+
+CP::CP()
+{
+	name = nullptr;
+	Ghz = 0;
+	price = 0;
+}
+
+CP::CP(const char* n, double g, double pr):CP(g, pr)
 {
 	if (name != nullptr)
 	{
@@ -52,17 +69,17 @@ void CP::Print()
 		<< "\nPrice: " << price << "\n";
 }
 
-const char* CP::getName()
+const char* CP::getName()const
 {
 	return name;
 }
 
-const int CP::getGhz()
+const int CP::getGhz()const
 {
 	return Ghz;
 }
 
-double CP::getPrice()
+double CP::getPrice()const
 {
 	return price;
 }

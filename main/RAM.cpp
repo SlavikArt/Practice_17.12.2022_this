@@ -2,7 +2,23 @@
 #include <iostream>
 using namespace std;
 
-RAM::RAM(const char* n, int m, double pr):memory(m), price(pr)
+RAM::RAM(int m) :memory(m)
+{
+
+}
+
+RAM::RAM(int m, double pr) :RAM(m)
+{
+	price = pr;
+}
+
+RAM::RAM() :memory(0)
+{
+	name = nullptr;
+	price = 0;
+}
+
+RAM::RAM(const char* n, int m, double pr):RAM(m, pr)
 {
 	if (name != nullptr)
 	{
@@ -52,17 +68,17 @@ void RAM::Print()
 		<< "\nPrice: " << price << "\n";
 }
 
-const char* RAM::getName()
+const char* RAM::getName()const
 {
 	return name;
 }
 
-const int RAM::getMemory()
+const int RAM::getMemory()const
 {
 	return memory;
 }
 
-double RAM::getPrice()
+double RAM::getPrice()const
 {
 	return price;
 }

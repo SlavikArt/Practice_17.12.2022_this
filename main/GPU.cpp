@@ -2,7 +2,23 @@
 #include <iostream>
 using namespace std;
 
-GPU::GPU(const char* n, int m, double pr):memory(m), price(pr)
+GPU::GPU(int m) :memory(m)
+{
+
+}
+
+GPU::GPU(int m, double pr) :GPU(m)
+{
+	price = pr;
+}
+
+GPU::GPU() :memory(0)
+{
+	name = nullptr;
+	price = 0;
+}
+
+GPU::GPU(const char* n, int m, double pr):GPU(m, pr)
 {
 	if (name != nullptr)
 	{
@@ -50,17 +66,17 @@ void GPU::Print()
 		<< "\nPrice: " << price << "\n";
 }
 
-const char* GPU::getName()
+const char* GPU::getName()const
 {
 	return name;
 }
 
-const int GPU::getMemory()
+const int GPU::getMemory()const
 {
 	return memory;
 }
 
-double GPU::getPrice()
+double GPU::getPrice()const
 {
 	return price;
 }
