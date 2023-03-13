@@ -14,7 +14,7 @@ public:
 	RAM(const RAM& r);
 	~RAM();
 	void Input();
-	void Print();
+	void Print(bool inner);
 
 	const char* getName()const;
 	const int getMemory()const;

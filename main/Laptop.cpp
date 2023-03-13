@@ -19,15 +19,77 @@ Laptop::Laptop(const char* n, Hdd& h, GPU& g, CP& c, RAM& r, double pr)
 	strcpy_s(this->name, strlen(n) + 1, n);
 }
 
+Laptop::Laptop(const char* n, Hdd& h, GPU& g, CP& c, RAM& r, double pr, 
+	Mouse* m, int mCnt) 
+	: Laptop(n, h, g, c, r, pr) // Mouse
+{
+	setMouses(m, mCnt);
+}
+
+Laptop::Laptop(const char* n, Hdd& h, GPU& g, CP& c, RAM& r, double pr, 
+	WebCamera* wc, int wcCnt)
+	: Laptop(n, h, g, c, r, pr) // WebCamera
+{
+	setWebCameras(wc, wcCnt);
+}
+
+Laptop::Laptop(const char* n, Hdd& h, GPU& g, CP& c, RAM& r, double pr,
+	Printer* prt, int prtCnt)
+	: Laptop(n, h, g, c, r, pr) // Printer
+{
+	setPrinters(prt, prtCnt);
+}
+
+Laptop::Laptop(const char* n, Hdd& h, GPU& g, CP& c, RAM& r, double pr,
+	Mouse* m, int mCnt, WebCamera* wc, int wcCnt) 
+	: Laptop(n, h, g, c, r, pr) // Mouse + WebCamera
+{
+	setMouses(m, mCnt);
+	setWebCameras(wc, wcCnt);
+}
+
+Laptop::Laptop(const char* n, Hdd& h, GPU& g, CP& c, RAM& r, double pr,
+	Mouse* m, int mCnt, Printer* prt, int prtCnt)
+	: Laptop(n, h, g, c, r, pr) // Mouse + Printer
+{
+	setMouses(m, mCnt);
+	setPrinters(prt, prtCnt);
+}
+
+Laptop::Laptop(const char* n, Hdd& h, GPU& g, CP& c, RAM& r, double pr,
+	WebCamera* wc, int wcCnt, Printer* prt, int prtCnt)
+	: Laptop(n, h, g, c, r, pr) // WebCamera + Printer
+{
+	setWebCameras(wc, wcCnt);
+	setPrinters(prt, prtCnt);
+}
+
+Laptop::Laptop(const char* n, Hdd& h, GPU& g, CP& c, RAM& r, double pr,
+	Mouse* m, int mCnt, Printer* prt, int prtCnt, WebCamera* wc, int wcCnt)
+	: Laptop(n, h, g, c, r, pr) // Mouse + Printer + WebCamera 
+{
+	setMouses(m, mCnt);
+	setPrinters(prt, prtCnt);
+	setWebCameras(wc, wcCnt);
+}
+
 Laptop::Laptop(const Laptop& l) 
-	:hdd(l.hdd), gpu(l.gpu), cp(l.cp), ram(l.ram), price(l.price)
+	:hdd(l.hdd), gpu(l.gpu), cp(l.cp), ram(l.ram), price(l.price),
+	mssCnt(l.mssCnt), wcamsCnt(l.wcamsCnt), prntsCnt(l.prntsCnt)
 {
 	if (name != nullptr)
-	{
 		delete[] name;
-	}
-	this->name = new char[strlen(l.name) + 1];
-	strcpy_s(this->name, strlen(l.name) + 1, l.name);
+	if (mss != nullptr)
+		delete[] mss;
+	if (wcams != nullptr)
+		delete[] wcams;
+	if (prnts != nullptr)
+		delete[] prnts;
+
+	setName(l.name);
+	setMouses(l.mss, l.mssCnt);
+	setWebCameras(l.wcams, l.wcamsCnt);
+	setPrinters(l.prnts, l.prntsCnt);
 }
 
 Laptop::~Laptop()
@@ -62,10 +124,20 @@ void Laptop::Print()
 	cout << "Name: " << name << "\n";
 	cout << "Price: " << price << "\n";
 
-	hdd.Print();
-	gpu.Print();
-	cp.Print();
-	ram.Print();
+	hdd.Print(true);
+	gpu.Print(true);
+	cp.Print(true);
+	ram.Print(true);
+
+	if (mss != nullptr)
+		for (int i = 0; i < mssCnt; i++)
+			mss[i].Print(true);
+	if (prnts != nullptr)
+		for (int i = 0; i < prntsCnt; i++)
+			prnts[i].Print(true);
+	if (wcams != nullptr)
+		for (int i = 0; i < wcamsCnt; i++)
+			wcams[i].Print(true);
 }
 
 const char* Laptop::getName()const
@@ -98,14 +170,29 @@ double Laptop::getPrice()const
 	return price;
 }
 
+Mouse* Laptop::getMouses()const
+{
+	return mss;
+}
+
+WebCamera* Laptop::getWebCameras()const
+{
+	return wcams;
+}
+
+Printer* Laptop::getPrinters()const
+{
+	return prnts;
+}
+
 void Laptop::setName(const char* n)
 {
 	if (name != nullptr)
-	{
 		delete[] name;
-	}
-	this->name = new char[strlen(n) + 1];
-	strcpy_s(this->name, strlen(n) + 1, n);
+
+	int len = strlen(n) + 1;
+	this->name = new char[len];
+	strcpy_s(this->name, len, n);
 }
 
 void Laptop::setHDD(Hdd& h)
@@ -136,4 +223,37 @@ void Laptop::setRAM(RAM& r)
 void Laptop::setPrice(double pr)
 {
 	price = pr;
+}
+
+void Laptop::setMouses(Mouse* m, int mCnt)
+{
+	this->mssCnt = mCnt;
+	this->mss = new Mouse[mssCnt];
+
+	for (int i = 0; i < mssCnt; i++)
+	{
+		mss[i] = m[i];
+	}
+}
+
+void Laptop::setWebCameras(WebCamera* wc, int wcCnt)
+{
+	this->wcamsCnt = wcCnt;
+	this->wcams = new WebCamera[wcamsCnt];
+
+	for (int i = 0; i < wcamsCnt; i++)
+	{
+		wcams[i] = wc[i];
+	}
+}
+
+void Laptop::setPrinters(Printer* prt, int prtCnt)
+{
+	this->prntsCnt = prtCnt;
+	this->prnts = new Printer[prntsCnt];
+
+	for (int i = 0; i < prntsCnt; i++)
+	{
+		prnts[i] = prt[i];
+	}
 }

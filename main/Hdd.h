@@ -14,7 +14,7 @@ public:
 	Hdd(const Hdd& h);
 	~Hdd();
 	void Input();
-	void Print();
+	void Print(bool inner);
 
 	// get
 	const char* getName()const;

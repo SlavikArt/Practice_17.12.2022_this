@@ -58,12 +58,22 @@ void GPU::Input()
 	cin >> price;
 }
 
-void GPU::Print()
+void GPU::Print(bool inner = false)
 {
-	cout << "-GPU-\n";
-	cout << "Name: " << name
-		<< "\nMemory: " << memory
-		<< "\nPrice: " << price << "\n";
+	if (!inner)
+	{
+		cout << "-GPU-\n";
+		cout << "Name: " << name
+			<< "\nMemory: " << memory
+			<< "\nPrice: " << price << "\n";
+	}
+	else
+	{
+		cout << "  " << "-GPU-\n"
+			<< "    " << "Name: " << name << "\n"
+			<< "    " << "Memory: " << memory << "\n"
+			<< "    " << "Price: " << price << "\n";
+	}
 }
 
 const char* GPU::getName()const

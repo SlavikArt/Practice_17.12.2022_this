@@ -58,12 +58,22 @@ void Hdd::Input()
 	cin >> price;
 }
 
-void Hdd::Print()
+void Hdd::Print(bool inner = false)
 {
-	cout << "-HDD-\n";
-	cout << "Name: " << name
-		<< "\nMemory: " << memory
-		<< "\nPrice: " << price << "\n";
+	if (!inner)
+	{
+		cout << "-HDD-\n";
+		cout << "Name: " << name
+			<< "\nMemory: " << memory
+			<< "\nPrice: " << price << "\n";
+	}
+	else
+	{
+		cout << "  " << "-HDD-\n"
+			<< "    " << "Name: " << name << "\n"
+			<< "    " << "Memory: " << memory << "\n"
+			<< "    " << "Price: " << price << "\n";
+	}
 }
 
 const char* Hdd::getName()const

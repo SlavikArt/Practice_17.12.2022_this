@@ -132,14 +132,20 @@
     <ClCompile Include="Hdd.cpp" />
     <ClCompile Include="Laptop.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Printer.cpp" />
     <ClCompile Include="RAM.cpp" />
+    <ClCompile Include="WebCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CP.h" />
     <ClInclude Include="GPU.h" />
     <ClInclude Include="Hdd.h" />
     <ClInclude Include="Laptop.h" />
+    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Printer.h" />
     <ClInclude Include="RAM.h" />
+    <ClInclude Include="WebCamera.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

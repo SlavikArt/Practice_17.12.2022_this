@@ -14,7 +14,7 @@ public:
 	CP(const CP& c);
 	~CP();
 	void Input();
-	void Print();
+	void Print(bool inner);
 
 	const char* getName()const;
 	const int getGhz()const;

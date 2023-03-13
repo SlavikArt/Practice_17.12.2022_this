@@ -61,12 +61,23 @@ void CP::Input()
 	cin >> price;
 }
 
-void CP::Print()
+void CP::Print(bool inner = false)
 {
-	cout << "-CP-\n";
-	cout << "Name: " << name
-		<< "\nGhz: " << Ghz
-		<< "\nPrice: " << price << "\n";
+	if (!inner)
+	{
+		cout << "-CP-\n";
+		cout << "Name: " << name
+			<< "\nGhz: " << Ghz
+			<< "\nPrice: " << price << "\n";
+	}
+	else
+	{
+		cout << "  " << "-CP-\n"
+			<< "    " << "Name: " << name << "\n"
+			<< "    " << "Ghz: " << Ghz << "\n"
+			<< "    " << "Price: " << price << "\n";
+	}
+	
 }
 
 const char* CP::getName()const

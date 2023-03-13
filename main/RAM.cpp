@@ -60,12 +60,22 @@ void RAM::Input()
 	cin >> price;
 }
 
-void RAM::Print()
+void RAM::Print(bool inner = false)
 {
-	cout << "-RAM-\n";
-	cout << "Name: " << name
-		<< "\nMemory: " << memory
-		<< "\nPrice: " << price << "\n";
+	if (!inner)
+	{
+		cout << "-RAM-\n";
+		cout << "Name: " << name
+			<< "\nMemory: " << memory
+			<< "\nPrice: " << price << "\n";
+	}
+	else
+	{
+		cout << "  " << "-RAM-\n"
+			<< "    " << "Name: " << name << "\n"
+			<< "    " << "Memory: " << memory << "\n"
+			<< "    " << "Price: " << price << "\n";
+	}
 }
 
 const char* RAM::getName()const
